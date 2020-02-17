@@ -20,7 +20,7 @@ int main(){
     
     return 0;
 }
-// imprime mega sena
+
 void megasena(){
 	int a, b, cont=1;
 	printf("\n");
@@ -58,9 +58,18 @@ void pegavalor(){
 
 void sortear(){
 	srand(time(NULL));
-	int a;
+	int a, b;
 	for(a=0;a<6;a++){
-		resultados[a] = rand()%60;
+		//este 'do' faz com que nenhum resultado apareca repitido
+		do{
+			//59 + 1 para eliminar a ocorrencia de '0'
+			resultados[a] = (rand()%59)+1;
+			for(b=a-1;b>0-1;b--){
+				if(resultados[a]==resultados[b]){
+					resultados[a] = 0;
+				}
+			}
+		}while(resultados[a] == 0);
 	}
 }
 
